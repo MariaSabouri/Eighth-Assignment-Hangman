@@ -1,16 +1,257 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="hangman.HangmanController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.HangmanController">
+   <children>
+      <VBox fx:id="KeyboardVbox" layoutX="287.0" layoutY="90.0">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="bA" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="A" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bB" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="B" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bC" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="C" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bD" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="D" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="BE" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="E" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bF" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="F" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="bG" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="G" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bH" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="H" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bI" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="I" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bJ" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="J" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bK" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="K" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bL" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="L" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="bM" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="M" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bN" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="N" textFill="#a61717">
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bO" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="O" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bP" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="P" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bQ" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="Q" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bR" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="R" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="bS" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="S" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bT" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="T" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bU" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="U" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bV" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="V" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bW" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="W" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bX" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="X" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER">
+               <children>
+                  <Button fx:id="bY" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="Y" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="bZ" alignment="CENTER" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="Z" textFill="#a61717">
+                     <HBox.margin>
+                        <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <Text fx:id="hangmanView" layoutX="14.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+         <font>
+            <Font name="Monospaced Regular" size="20.0" />
+         </font>
+      </Text>
+      <Label fx:id="lableWord" layoutX="273.0" layoutY="339.0">
+         <font>
+            <Font name="Arial" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
