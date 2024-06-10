@@ -29,42 +29,42 @@ public class HangmanHandelClass {
             playingGameCounter++;
             int n=words[playingGameCounter].length();
             secretword=words[playingGameCounter];
-
             for (int i = 0; i < n; i++) {
                 out+="*";
             }
-
             return out;
         }
         else {
             return null;
         }
-
     }
 
 
     private static String displayResultPane(Boolean b1,Boolean b2,char chara) {
         if (b1==true&&b2==false){
             char[] charArray = out.toCharArray();
-
             for (int i=0 ;i<out.length();i++) {
-
                 if (secretword.toUpperCase().charAt(i)==chara){
                     charArray[i]=chara;
                     out=new String(charArray);
-
                 }
             }
+            HangmanController.WordHandled(true);
             return out;
-
-        } else if (b1==true&&b2==true) {return null;
-
-        } else if (b1 == false && b2==false) {return null;
-
-        }else {return null;}
-
-
+        } else if (b1==true&&b2==true) {
+            HangmanController.WordHandled(true);
+            return out;
+        } else if (b1 == false && b2==false) {
+            HangmanController.WordHandled(false);
+            HangmanController.changeManSituationView();
+            return out;
+        }else {
+            HangmanController.WordHandled(false);
+            HangmanController.changeManSituationView();
+            return out;}
     }
+
+
     static int counter=0;
 
     public static String SearchingForChar(char chara) {
@@ -76,28 +76,26 @@ public class HangmanHandelClass {
             if (counter==uniqueCharsSet.size()){
                 counter=0;
                 return displayResultPane(true,true,chara);
-            }else {return displayResultPane(true,false,chara);}
+            }else {
+                return displayResultPane(true,false,chara);}
         } else {
             WinnigChance--;
             if (WinnigChance==0){
                 return displayResultPane(false,true,chara);
-            }else {return displayResultPane(false,false,chara);}
+            }else {
+                return displayResultPane(false,false,chara);}
         }
-
-
-
     }
+
+
 
     public static List UniqueCharsSet(String word) {
         List<Character> uniqueChars = new ArrayList<>();
-
         for (char c : word.toCharArray()) {
             if (!uniqueChars.contains(c)){
                 uniqueChars.add(c);
             }
-
         }
-
         return uniqueChars;
     }
 }

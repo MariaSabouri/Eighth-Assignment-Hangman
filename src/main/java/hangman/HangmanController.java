@@ -9,6 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -102,7 +103,7 @@ public class HangmanController implements Initializable {
     public static char charchoosen;
     public static String secreteWord=HangmanHandelClass.playingNewWord();
     private static int secreteWordLength=HangmanHandelClass.UniqueCharsSet(HangmanHandelClass.secretword).size();
-    ArrayList<String> hangmanLives=new ArrayList<>(Arrays.asList(
+    static ArrayList<String> hangmanLives=new ArrayList<>(Arrays.asList(
             """
                     ===============
                     |             |
@@ -181,19 +182,33 @@ public class HangmanController implements Initializable {
                     """
 
     ));
+    public static Boolean wordHandled=false;
+    public static void WordHandled(boolean b) {
+        wordHandled=b;
+    }
 
 
     @FXML
     void CreatingAlphabetKeyBoard(ActionEvent event) {
-        secreteWordLength--;
+
+
         Button button=(Button) event.getSource();
         button.setDisable(true);
         charchoosen=button.getText().charAt(0);
         System.out.println(charchoosen);
         lableWord.setText(HangmanHandelClass.SearchingForChar(charchoosen));
 
-        if (secreteWordLength>0){
+        if (wordHandled==true){
+            secreteWordLength--;
         }else {
+            try {
+                changeHangmanView(counterForHangmanView);
+            }catch (Exception e){
+                KeyboardVbox.setDisable(true);
+                lableWord.setText("Game Over!");
+            }
+        }
+        if (secreteWordLength<1){
             try {
                 changeActionOfBottons();
                 secreteWord=HangmanHandelClass.playingNewWord();
@@ -206,6 +221,24 @@ public class HangmanController implements Initializable {
                 KeyboardVbox.setDisable(true);
             }
         }
+    }
+    private static int counterForHangmanView=1;
+    public static int changeManSituationView(){
+        counterForHangmanView++;
+
+        if (counterForHangmanView==hangmanLives.size()-2){
+            return 7;
+        }else {
+            return counterForHangmanView;
+        }
+    }
+
+    public void changeHangmanView(int i){
+        hangmanView.setText(hangmanLives.get(i));
+    }
+
+    private void gameOver() {
+        KeyboardVbox.setDisable(true);
     }
 
 
@@ -231,5 +264,7 @@ public class HangmanController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lableWord.setText(secreteWord);
+        hangmanView.setText(hangmanLives.get(0));
     }
+
 }

@@ -243,7 +243,7 @@
             </HBox>
          </children>
       </VBox>
-      <Text fx:id="hangmanView" layoutX="14.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+      <Text fx:id="hangmanView" layoutX="14.0" layoutY="83.0" strokeType="OUTSIDE" strokeWidth="0.0">
          <font>
             <Font name="Monospaced Regular" size="20.0" />
          </font>
