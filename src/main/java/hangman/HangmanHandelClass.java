@@ -4,19 +4,9 @@ import java.util.*;
 
 public class HangmanHandelClass {
     static String[] words=new String[]{"Sam","Maria","jack"};
-    static int WinnigChance;
-    static int WinningCounter;
-    static int wrongGuess;
-
-
-    static Scanner sc=new Scanner(System.in);
-
-    public HangmanHandelClass() {
-        WinnigChance =7;
-        WinningCounter=0;
-        wrongGuess=0;
-
-    }
+    static int WinnigChance=7;
+    static int WinningCounter=0;
+    static int wrongGuess=0;
 
     private static int playingGameCounter =-1;
     public static String secretword;
@@ -50,9 +40,18 @@ public class HangmanHandelClass {
                 }
             }
             HangmanController.WordHandled(true);
+
             return out;
         } else if (b1==true&&b2==true) {
+            char[] charArray = out.toCharArray();
+            for (int i=0 ;i<out.length();i++) {
+                if (secretword.toUpperCase().charAt(i)==chara){
+                    charArray[i]=chara;
+                    out=new String(charArray);
+                }
+            }
             HangmanController.WordHandled(true);
+
             return out;
         } else if (b1 == false && b2==false) {
             HangmanController.WordHandled(false);

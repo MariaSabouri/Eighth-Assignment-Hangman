@@ -7,12 +7,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class HangmanController implements Initializable {
@@ -92,7 +95,8 @@ public class HangmanController implements Initializable {
     private Button bY;
     @FXML
     private Button bZ;
-
+    @FXML
+    private Button btNext;
 
     @FXML
     private Text hangmanView;
@@ -193,11 +197,12 @@ public class HangmanController implements Initializable {
 
 
         Button button=(Button) event.getSource();
+
         button.setDisable(true);
         charchoosen=button.getText().charAt(0);
         System.out.println(charchoosen);
         lableWord.setText(HangmanHandelClass.SearchingForChar(charchoosen));
-
+        lableWord.setTextFill(Color.BLACK);
         if (wordHandled==true){
             secreteWordLength--;
         }else {
@@ -206,27 +211,40 @@ public class HangmanController implements Initializable {
             }catch (Exception e){
                 KeyboardVbox.setDisable(true);
                 lableWord.setText("Game Over!");
+                lableWord.setTextFill(Color.RED);
+                btNext.setDisable(true);
             }
         }
         if (secreteWordLength<1){
-            try {
-                changeActionOfBottons();
-                secreteWord=HangmanHandelClass.playingNewWord();
-                secreteWordLength=HangmanHandelClass.UniqueCharsSet(HangmanHandelClass.secretword).size();
-//                System.out.println(HangmanHandelClass.UniqueCharsSet(HangmanHandelClass.secretword));
-                lableWord.setText(secreteWord);
-
-            }catch (Exception e){
-                lableWord.setText("Game finished");
-                KeyboardVbox.setDisable(true);
-            }
+            lableWord.setTextFill(Color.GREEN);
+            btNext.setDisable(false);
+            btNext.setVisible(true);
+            KeyboardVbox.setDisable(true);
         }
     }
+    @FXML
+    void KeyNextBotton(ActionEvent event) {
+        try {
+            KeyboardVbox.setDisable(false);
+            changeActionOfBottons();
+            secreteWord=HangmanHandelClass.playingNewWord();
+            secreteWordLength=HangmanHandelClass.UniqueCharsSet(HangmanHandelClass.secretword).size();
+//                System.out.println(HangmanHandelClass.UniqueCharsSet(HangmanHandelClass.secretword));
+            lableWord.setText(secreteWord);
+            lableWord.setTextFill(Color.BLACK);
+
+        }catch (Exception e){
+            lableWord.setText("Game finished");
+            KeyboardVbox.setDisable(true);
+            btNext.setDisable(true);
+        }
+    }
+
     private static int counterForHangmanView=1;
     public static int changeManSituationView(){
         counterForHangmanView++;
 
-        if (counterForHangmanView==hangmanLives.size()-2){
+        if (counterForHangmanView==hangmanLives.size()-1){
             return 7;
         }else {
             return counterForHangmanView;
@@ -237,9 +255,6 @@ public class HangmanController implements Initializable {
         hangmanView.setText(hangmanLives.get(i));
     }
 
-    private void gameOver() {
-        KeyboardVbox.setDisable(true);
-    }
 
 
     private void changeActionOfBottons(){
@@ -257,9 +272,7 @@ public class HangmanController implements Initializable {
     }
 
 
-    public static void Gamelable(String lable){
-        //TODO
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
