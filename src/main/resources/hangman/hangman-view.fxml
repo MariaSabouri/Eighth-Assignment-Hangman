@@ -232,6 +232,11 @@
                         <Font name="Georgia Bold" size="19.0" />
                      </font>
                   </Button>
+                  <Button fx:id="bSpace" alignment="CENTER" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" prefHeight="36.0" prefWidth="198.0" style="-fx-background-color: #CCFFF8;" text="-" textFill="#a61717">
+                     <font>
+                        <Font name="Georgia Bold" size="19.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="bZ" alignment="CENTER" mnemonicParsing="false" onAction="#CreatingAlphabetKeyBoard" style="-fx-background-color: #CCFFF8;" text="Z" textFill="#a61717">
                      <HBox.margin>
                         <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />

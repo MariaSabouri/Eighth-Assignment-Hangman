@@ -4,7 +4,11 @@ import java.util.*;
 
 public class HangmanHandelClass {
     static String[] words=new String[]{"Sam","Maria","jack"};
-    static int WinnigChance=7;
+    static void generation10words(int i){
+
+
+    }
+    static int WinnigChance=6;
     static int WinningCounter=0;
     static int wrongGuess=0;
 
@@ -68,7 +72,7 @@ public class HangmanHandelClass {
 
     public static String SearchingForChar(char chara) {
         List<Character> uniqueCharsSet=UniqueCharsSet(secretword.toUpperCase());
-        System.out.println(uniqueCharsSet);
+//        System.out.println(uniqueCharsSet);
 
         if (uniqueCharsSet.contains(chara)){
             counter++;
@@ -79,7 +83,7 @@ public class HangmanHandelClass {
                 return displayResultPane(true,false,chara);}
         } else {
             WinnigChance--;
-            if (WinnigChance==0){
+            if (WinnigChance==1){
                 return displayResultPane(false,true,chara);
             }else {
                 return displayResultPane(false,false,chara);}

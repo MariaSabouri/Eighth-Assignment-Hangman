@@ -1,5 +1,6 @@
 package hangman;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,6 +18,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
+
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HangmanController implements Initializable {
     @FXML
@@ -95,6 +102,9 @@ public class HangmanController implements Initializable {
     private Button bY;
     @FXML
     private Button bZ;
+
+    @FXML
+    private Button bSpace;
     @FXML
     private Button btNext;
 
@@ -209,10 +219,12 @@ public class HangmanController implements Initializable {
             try {
                 changeHangmanView(counterForHangmanView);
             }catch (Exception e){
+                counterForHangmanView=2;
                 KeyboardVbox.setDisable(true);
                 lableWord.setText("Game Over!");
                 lableWord.setTextFill(Color.RED);
                 btNext.setDisable(true);
+
             }
         }
         if (secreteWordLength<1){
@@ -225,6 +237,8 @@ public class HangmanController implements Initializable {
     @FXML
     void KeyNextBotton(ActionEvent event) {
         try {
+            btNext.setDisable(true);
+            btNext.setVisible(false);
             KeyboardVbox.setDisable(false);
             changeActionOfBottons();
             secreteWord=HangmanHandelClass.playingNewWord();
@@ -240,7 +254,7 @@ public class HangmanController implements Initializable {
         }
     }
 
-    private static int counterForHangmanView=1;
+    private static int counterForHangmanView=0;
     public static int changeManSituationView(){
         counterForHangmanView++;
 
@@ -270,14 +284,24 @@ public class HangmanController implements Initializable {
 
 
     }
+    //For scene0(Start Scene)
+    @FXML
+    private Button btStart;
 
+    @FXML
+    void StartBotton(ActionEvent event) {
+
+        //TODO
+    }
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         lableWord.setText(secreteWord);
         hangmanView.setText(hangmanLives.get(0));
+
     }
 
 }
