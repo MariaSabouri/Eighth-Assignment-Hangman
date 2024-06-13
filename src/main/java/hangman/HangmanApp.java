@@ -15,6 +15,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Scanner;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -58,24 +60,47 @@ public class HangmanApp extends Application {
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws Exception {
+        DatabaseManager.openConnection(true);
+        System.out.printf("%s%15s%15s\n","#####","Welcome","#####");
+        System.out.printf("%d%10s\n",0,"logIn");
+        System.out.printf("%d%10s\n",1,"SignUp");
+        String answer=new Scanner(System.in).nextLine();
+        if (Integer.parseInt(answer)==0){
+        System.out.println("Enter Your name: ");
+        String name=new Scanner(System.in).nextLine();
+        System.out.println("Enter Your Username: ");
+        String Username=new Scanner(System.in).nextLine();
+        System.out.println("Enter Your Password:");
+        String password=new Scanner(System.in).nextLine();
+        Boolean b=DatabaseManager.login(name,Username,Integer.parseInt(password));
+        if (b==true){
+            HangmanHandelClass.Username=Username;
+            launch();
+        }
+        } else if (Integer.parseInt(answer)==1) {
+            System.out.println("Enter Your name: ");
+            String name=new Scanner(System.in).nextLine();
+            System.out.println("Enter Your Username: ");
+            String Username=new Scanner(System.in).nextLine();
+            System.out.println("Enter Your Password:");
+            String password=new Scanner(System.in).nextLine();
+            DatabaseManager.newuserinfo(name,Username, Integer.parseInt(password));
+            HangmanHandelClass.Username=Username;
+            launch();
+        }else {
+            System.out.println("Wrong input");
+        }
+
+
+        DatabaseManager.openConnection(false);
+
+
 //        JSONObject jsonObjectdog =parsingFromAPI("dog");
 //        JSONObject jsonObjectfish=parsingFromAPI("fish");
 //        JSONObject jsonObjectbird=parsingFromAPI("bird");
 //        JSONObject jsonObjectlion=parsingFromAPI("lion");
 //        System.out.println(jsonObjectdog);
-
-
-
-        DatabaseManager.openConnection(true);
-
-//        try {
-//            DatabaseManager.userinfo("Maria","MSD",1234);
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//
-//        launch(args);
 
     }
 

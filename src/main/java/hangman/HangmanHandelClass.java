@@ -3,14 +3,20 @@ package hangman;
 import java.util.*;
 
 public class HangmanHandelClass {
-    static String[] words=new String[]{"Sam","Maria","jack"};
-    static void generation10words(int i){
-
-
+    static String[] words=new String[]{"dog","bird","fish","lion","cheetah","monkey","cat","horse","girafe","Corvus"};
+    static int WinnigChance;
+    static int WinningCounter;
+    static int wrongGuess;
+    static int time;
+    static String Username;
+    public HangmanHandelClass() {
+        WinnigChance=6;
+        WinningCounter=0;
+        wrongGuess=0;
+        time=0;
     }
-    static int WinnigChance=6;
-    static int WinningCounter=0;
-    static int wrongGuess=0;
+
+
 
     private static int playingGameCounter =-1;
     public static String secretword;
@@ -19,9 +25,12 @@ public class HangmanHandelClass {
 
     public static String playingNewWord(){
         if (playingGameCounter<words.length){
+            wrongGuess=0;
+            time=0;
             out="";
             playingGameCounter++;
             int n=words[playingGameCounter].length();
+            HangmanController.starttime=System.currentTimeMillis();
             secretword=words[playingGameCounter];
             for (int i = 0; i < n; i++) {
                 out+="*";
@@ -83,6 +92,7 @@ public class HangmanHandelClass {
                 return displayResultPane(true,false,chara);}
         } else {
             WinnigChance--;
+            wrongGuess++;
             if (WinnigChance==1){
                 return displayResultPane(false,true,chara);
             }else {

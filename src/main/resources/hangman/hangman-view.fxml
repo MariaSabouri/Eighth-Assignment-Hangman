@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.HangmanController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFEFF6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.HangmanController">
    <children>
       <VBox fx:id="KeyboardVbox" layoutX="287.0" layoutY="90.0">
          <children>
@@ -262,7 +262,7 @@
             <ColorAdjust />
          </effect>
       </Button>
-      <Label fx:id="lableWord" layoutX="273.0" layoutY="348.0" text="Label" textAlignment="CENTER">
+      <Label fx:id="lableWord" layoutX="273.0" layoutY="348.0" textAlignment="CENTER">
          <font>
             <Font size="26.0" />
          </font>

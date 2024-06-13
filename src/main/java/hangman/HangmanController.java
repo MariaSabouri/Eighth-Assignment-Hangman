@@ -14,6 +14,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Objects;
@@ -25,7 +26,7 @@ import java.net.URL;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class HangmanController implements Initializable {
+public class HangmanController implements Initializable  {
     @FXML
     private Button BE;
 
@@ -115,6 +116,8 @@ public class HangmanController implements Initializable {
     @FXML
     private VBox KeyboardVbox;
     public static char charchoosen;
+    static long finishtime=0;
+    static long starttime=0;
     public static String secreteWord=HangmanHandelClass.playingNewWord();
     private static int secreteWordLength=HangmanHandelClass.UniqueCharsSet(HangmanHandelClass.secretword).size();
     static ArrayList<String> hangmanLives=new ArrayList<>(Arrays.asList(
@@ -219,15 +222,31 @@ public class HangmanController implements Initializable {
             try {
                 changeHangmanView(counterForHangmanView);
             }catch (Exception e){
-                counterForHangmanView=2;
+
+                counterForHangmanView=0;
+                finishtime=System.currentTimeMillis();
+                timer();
+                try {
+                    DatabaseManager.Gameinfo(HangmanHandelClass.Username,HangmanHandelClass.secretword,HangmanHandelClass.wrongGuess,HangmanHandelClass.time,false);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
                 KeyboardVbox.setDisable(true);
                 lableWord.setText("Game Over!");
+
                 lableWord.setTextFill(Color.RED);
                 btNext.setDisable(true);
 
             }
         }
         if (secreteWordLength<1){
+            finishtime=System.currentTimeMillis();
+            timer();
+            try {
+                DatabaseManager.Gameinfo(HangmanHandelClass.Username,HangmanHandelClass.secretword,HangmanHandelClass.wrongGuess,HangmanHandelClass.time,true);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             lableWord.setTextFill(Color.GREEN);
             btNext.setDisable(false);
             btNext.setVisible(true);
@@ -237,6 +256,8 @@ public class HangmanController implements Initializable {
     @FXML
     void KeyNextBotton(ActionEvent event) {
         try {
+            finishtime = System.currentTimeMillis();
+            timer();
             btNext.setDisable(true);
             btNext.setVisible(false);
             KeyboardVbox.setDisable(false);
@@ -248,7 +269,10 @@ public class HangmanController implements Initializable {
             lableWord.setTextFill(Color.BLACK);
 
         }catch (Exception e){
+            finishtime = System.currentTimeMillis();
+            timer();
             lableWord.setText("Game finished");
+
             KeyboardVbox.setDisable(true);
             btNext.setDisable(true);
         }
@@ -284,21 +308,15 @@ public class HangmanController implements Initializable {
 
 
     }
-    //For scene0(Start Scene)
-    @FXML
-    private Button btStart;
 
-    @FXML
-    void StartBotton(ActionEvent event) {
-
-        //TODO
+    private void timer() {
+        HangmanHandelClass.time= ((int) (finishtime-starttime));
     }
-
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        starttime=System.currentTimeMillis();
         lableWord.setText(secreteWord);
         hangmanView.setText(hangmanLives.get(0));
 
