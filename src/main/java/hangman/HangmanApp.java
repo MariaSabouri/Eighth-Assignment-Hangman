@@ -93,6 +93,8 @@ public class HangmanApp extends Application {
         }
 
 
+
+
         DatabaseManager.openConnection(false);
 
 

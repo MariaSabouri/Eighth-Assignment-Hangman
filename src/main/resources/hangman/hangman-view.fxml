@@ -10,9 +10,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFEFF6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.HangmanController">
+<AnchorPane fx:id="Anchorpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: FFEFF6;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.HangmanController">
    <children>
-      <VBox fx:id="KeyboardVbox" layoutX="287.0" layoutY="90.0">
+      <VBox fx:id="KeyboardVbox" layoutX="287.0" layoutY="90.0" AnchorPane.topAnchor="50.0">
          <children>
             <HBox alignment="CENTER">
                <children>
@@ -254,18 +254,51 @@
             <Font name="Monospaced Regular" size="20.0" />
          </font>
       </Text>
-      <Button fx:id="btNext" disable="true" focusTraversable="false" layoutX="498.0" layoutY="346.0" mnemonicParsing="false" onAction="#KeyNextBotton" text="Next" textAlignment="CENTER" textFill="#a11818" visible="false">
-         <font>
-            <Font name="Bodoni MT Black" size="12.0" />
-         </font>
-         <effect>
-            <ColorAdjust />
-         </effect>
-      </Button>
-      <Label fx:id="lableWord" layoutX="273.0" layoutY="348.0" textAlignment="CENTER">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
+      <HBox alignment="CENTER" layoutX="55.0" layoutY="299.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btStatistic" mnemonicParsing="false" onAction="#StatisticAction" style="-fx-background-color: C8BFE7;" text="Statistic" textAlignment="CENTER" textFill="#e44242">
+                     <HBox.margin>
+                        <Insets left="10.0" right="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Georgia" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="lableWord" alignment="CENTER" textAlignment="CENTER">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="btNext" disable="true" focusTraversable="false" mnemonicParsing="false" onAction="#KeyNextBotton" text="Next" textAlignment="CENTER" textFill="#a11818" visible="false">
+                     <font>
+                        <Font name="Georgia" size="12.0" />
+                     </font>
+                     <effect>
+                        <ColorAdjust />
+                     </effect>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </HBox>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

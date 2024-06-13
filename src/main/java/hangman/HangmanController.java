@@ -4,12 +4,14 @@ import com.fasterxml.jackson.databind.JsonNode;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
@@ -28,85 +30,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class HangmanController implements Initializable  {
     @FXML
-    private Button BE;
-
-    @FXML
-    private Button bA;
-
-    @FXML
-    private Button bB;
-
-    @FXML
-    private Button bC;
-
-    @FXML
-    private Button bD;
-
-
-    @FXML
-    private Button bF;
-
-    @FXML
-    private Button bG;
-
-    @FXML
-    private Button bH;
-
-    @FXML
-    private Button bI;
-
-    @FXML
-    private Button bJ;
-
-    @FXML
-    private Button bK;
-
-    @FXML
-    private Button bL;
-
-    @FXML
-    private Button bM;
-    @FXML
-    private Button bN;
-
-    @FXML
-    private Button bO;
-
-    @FXML
-    private Button bP;
-
-    @FXML
-    private Button bQ;
-
-    @FXML
-    private Button bR;
-
-    @FXML
-    private Button bS;
-
-    @FXML
-    private Button bT;
-
-    @FXML
-    private Button bU;
-
-    @FXML
-    private Button bV;
-
-    @FXML
-    private Button bW;
-
-    @FXML
-    private Button bX;
-
-    @FXML
-    private Button bY;
-    @FXML
-    private Button bZ;
-
-    @FXML
-    private Button bSpace;
-    @FXML
     private Button btNext;
 
     @FXML
@@ -115,6 +38,8 @@ public class HangmanController implements Initializable  {
     private Label lableWord;
     @FXML
     private VBox KeyboardVbox;
+    @FXML
+    private Button btStatistic;
     public static char charchoosen;
     static long finishtime=0;
     static long starttime=0;
@@ -213,7 +138,7 @@ public class HangmanController implements Initializable  {
 
         button.setDisable(true);
         charchoosen=button.getText().charAt(0);
-        System.out.println(charchoosen);
+//        System.out.println(charchoosen);
         lableWord.setText(HangmanHandelClass.SearchingForChar(charchoosen));
         lableWord.setTextFill(Color.BLACK);
         if (wordHandled==true){
@@ -233,8 +158,10 @@ public class HangmanController implements Initializable  {
                 }
                 KeyboardVbox.setDisable(true);
                 lableWord.setText("Game Over!");
-
                 lableWord.setTextFill(Color.RED);
+                KeyboardVbox.setVisible(false);
+                hangmanView.setText(DatabaseManager.userStatistic(HangmanHandelClass.Username));
+                btStatistic.setDisable(true);
                 btNext.setDisable(true);
 
             }
@@ -260,6 +187,7 @@ public class HangmanController implements Initializable  {
             timer();
             btNext.setDisable(true);
             btNext.setVisible(false);
+            KeyboardVbox.setVisible(true);
             KeyboardVbox.setDisable(false);
             changeActionOfBottons();
             secreteWord=HangmanHandelClass.playingNewWord();
@@ -272,10 +200,37 @@ public class HangmanController implements Initializable  {
             finishtime = System.currentTimeMillis();
             timer();
             lableWord.setText("Game finished");
-
             KeyboardVbox.setDisable(true);
+            hangmanView.setText(DatabaseManager.userStatistic(HangmanHandelClass.Username));
+            btStatistic.setVisible(true);
+            btStatistic.setDisable(true);
             btNext.setDisable(true);
         }
+    }
+    static String labletext;
+    @FXML
+    void StatisticAction(ActionEvent event) {
+
+        if (Objects.equals(btStatistic.getText(), "Statistic")){
+            labletext=lableWord.getText();
+            if (lableWord.getText()!="Game finished"||lableWord.getText()!="Game Over!"){
+                btStatistic.setText("Back");
+            }
+            KeyboardVbox.setVisible(false);
+            lableWord.setText("Statisic");
+            lableWord.setTextFill(Color.TURQUOISE);
+            hangmanView.setText(DatabaseManager.userStatistic(HangmanHandelClass.Username));
+        }else {
+            changeHangmanView(i);
+            KeyboardVbox.setVisible(true);
+            lableWord.setText(this.labletext);
+            lableWord.setTextFill(Color.BLACK);
+            btStatistic.setText("Statistic");
+
+
+        }
+
+
     }
 
     private static int counterForHangmanView=0;
@@ -288,8 +243,9 @@ public class HangmanController implements Initializable  {
             return counterForHangmanView;
         }
     }
-
+    static int i;
     public void changeHangmanView(int i){
+        this.i=i;
         hangmanView.setText(hangmanLives.get(i));
     }
 

@@ -1,5 +1,6 @@
 package hangman;
 
+import java.math.BigInteger;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -35,15 +36,17 @@ public class DatabaseManager {
         if (checking(username)==true){
             System.out.println("There exist such username.\nPlease Enter another one:");
             String newuserName=new Scanner(System.in).next();
+            HangmanHandelClass.Username=newuserName;
             newuserinfo(name,newuserName,password);
-        }
-        String sql="INSERT INTO public.\"UserInfo\"(name,username,password) VALUES (?,?,?)";
-         PreparedStatement pstmt = connection.prepareStatement(sql);
+        }else {
+            String sql = "INSERT INTO public.\"UserInfo\"(name,username,password) VALUES (?,?,?)";
+            PreparedStatement pstmt = connection.prepareStatement(sql);
             pstmt.setString(1, name);
-            pstmt.setString(2,username);
-            pstmt.setInt(3,password);
+            pstmt.setString(2, username);
+            pstmt.setInt(3, password);
             pstmt.executeUpdate();
-        System.out.println("Record newUser inserted successfully.");
+            System.out.println("Record newUser inserted successfully.");
+        }
     }
 
     private static boolean checking(String username)throws Exception {
@@ -91,7 +94,36 @@ public class DatabaseManager {
             System.out.println("didn't find such account!\nPlease run again! ");
             return false;}
     }
-    public static void userStatistic(String username){
+    public static String userStatistic(String username) {
+        String sql="SELECT count(*) FROM public.\"GameInfo\" where \"Username\"=? and \"Win\"='true'";
+        String query = "SELECT \"Username\", COUNT(*) AS \"WinCount\" FROM public.\"GameInfo\" WHERE \"Win\" = 'TRUE' GROUP BY \"Username\" ORDER BY \"WinCount\" DESC";
+        try {
+            PreparedStatement st=connection.prepareStatement(sql);
+            st.setString(1,username);
+            ResultSet rs=st.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                String statistic="Username: "+username+"\n"+"Number of winning: "+count;
+
+
+                PreparedStatement preparedStatement = connection.prepareStatement(query);
+                ResultSet resultSet = preparedStatement.executeQuery();
+                String resultString = "";
+                while (resultSet.next()) {
+                    String USERrname = resultSet.getString("Username");
+                    int winCount = resultSet.getInt("WinCount");
+                    resultString += "Username: " + USERrname + ", WinCount: " + winCount + "\n";
+                }
+                statistic+="\n"+resultString;
+
+
+                return statistic;
+            }else return "";
+
+        }catch (SQLException e){
+            e.printStackTrace();
+            return "";
+        }
 
     }
     public static void tops(){
